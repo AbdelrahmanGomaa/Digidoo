@@ -1,0 +1,82 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+@{
+    var selection = Model.Root().Children().Where(x => x.IsVisible());
+    var HomePage = Umbraco.Content(1086);
+    var HeaderLogo = HomePage.Value<MediaWithCrops>("headerLogo");
+}
+
+
+
+
+
+<!-- ==================== Start Navbar ==================== -->
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="logo" href="@HomePage.Url()">
+            <img src="@HeaderLogo.MediaUrl()" alt="logo">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"><i class="fas fa-bars"></i></span>
+        </button>
+
+        <!-- navbar links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav ml-auto">
+            @if (!HomePage.Value<bool>("umbracoNaviHide"))
+            {
+                <li class="nav-item active"><a class="nav-link" href="@HomePage.Url()">@(!(String.IsNullOrEmpty(HomePage.Value<String>("menuDisplayName"))) ? HomePage.Value("menuDisplayName") : HomePage.Name)</a></li>
+            }
+
+            @foreach (var item in selection)
+            {
+                <li class="nav-item active">
+                    <a class="nav-link" href="@item.Url()">@(!(String.IsNullOrEmpty(item.Value<String>("menuDisplayName"))) ? item.Value("menuDisplayName") : item.Name)</a>
+                    @if (@item.Children.Where(x => x.IsVisible()).Any() && item.Name != "Blogs" && item.Name != "Our Works")
+                    {
+                        <ul class="main-dropdown">
+                            @foreach (var Child in item.Children.Where(x => x.IsVisible()))
+                            {
+                                <li class="nav-item active"><a class="nav-link" href="@Child.Url()">@(!(String.IsNullOrEmpty(item.Value<String>("menuDisplayName"))) ? Child.Value("menuDisplayName") : Child.Name)</a></li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+            </ul>
+
+
+
+           @*  <ul class="navbar-nav ml-auto">
+                @foreach (var item in selection)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@item.Url()">
+                            @(!(String.IsNullOrEmpty(item.Value<String>("menuDisplayName"))) ? item.Value("menuDisplayName") : item.Name)
+                        </a>
+                    </li>
+                }
+               
+              
+            </ul> *@
+            @*<div class="search">
+                <span class="icon pe-7s-search cursor-pointer"></span>
+                <div class="search-form text-center custom-font">
+                    <form>
+                        <input type="text" name="search" placeholder="Search">
+                    </form>
+                    <span class="close pe-7s-close cursor-pointer"></span>
+                </div>
+            </div>*@
+        </div>
+    </div>
+</nav>
+
+<!-- ==================== End Navbar ==================== -->

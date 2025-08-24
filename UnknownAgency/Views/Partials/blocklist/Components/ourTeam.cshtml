@@ -1,0 +1,30 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+         var contentClients = (ContentModels.OurTeam)Model.Content;
+
+         var OurTeamImage = contentClients.Value<MediaWithCrops>("ourTeamImage");
+    
+}
+                    <div class="item wow fadeInUp" data-wow-delay=".3s">
+                        <div class="img wow imago">
+                            <img src="@OurTeamImage?.MediaUrl()" alt="@OurTeamImage?.Name">
+                        </div>
+                        <div class="info">
+                            <h5>@contentClients.Value("ourTeamName")</h5>
+                            <span>@contentClients.Value("ourTeamPosition")</span>
+                            <div class="social">
+                                <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
+                                <a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
+                                <a href="javascript:void(0);"><i class="fab fa-behance"></i></a>
+                                <a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+         

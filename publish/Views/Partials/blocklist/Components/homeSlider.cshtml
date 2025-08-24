@@ -1,0 +1,30 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+         var content = (ContentModels.HomeSlider)Model.Content;
+         var ContactsHeaderImg = content.Value<MediaWithCrops>("homeSliderImage");
+    
+}
+
+         <div class="swiper-slide">
+         <div class="bg-img valign" data-background="@ContactsHeaderImg?.MediaUrl()" data-overlay-dark="6">
+                 <div class="container">
+                     <div class="row justify-content-center">
+                         <div class="col-lg-7 col-md-9">
+                             <div class="caption center">
+                        <h1 data-splitting>@content.Value("homeSliderTitle")</h1>
+                                 <p>
+                                     @content.Value("homeSliderDesc")
+                                 </p>
+                                 <a href="#0" class="btn-curve btn-lit mt-30">
+                                     <span>Look More</span>
+                                 </a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>

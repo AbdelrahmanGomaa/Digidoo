@@ -1,0 +1,305 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.About>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+	Layout = "MasterTemplate.cshtml";
+    var ContactsPage = Umbraco.Content(1088);
+    var HomePage = Model.Root();
+
+
+}
+
+
+<header class="works-header fixed-slider hfixd valign">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-11 static">
+                <div class="capt mt-50">
+                    <div class="parlx">
+                        <h2 class="custom-font"><span>@Model.Value("aboutHeaderTitle")</span>@Model.Value("aboutHeaderSubTitle")</h2>
+                        <p>
+                            @Model.Value("aboutHeaderDesc")
+                        </p>
+                    </div>
+
+                    <div class="bactxt custom-font valign">
+                        <span class="full-width">@Model.Value("aboutHeaderBackground")</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== Start Slider ==================== -->
+
+@* <header class="pages-header bg-img valign parallaxie" data-background="img/slid/1.jpg" data-overlay-dark="5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cont text-center">
+                    <h1>About Us</h1>
+                    <div class="path">
+                        <a href="#0">Home</a><span>/</span><a href="#0" class="active">About Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header> *@
+
+<!-- ==================== End Slider ==================== -->
+
+
+<div class="main-content">
+<!-- ==================== Start Intro ==================== -->
+
+<section class="intro-section section-padding pb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="htit sm-mb30">
+                    <h4>@Model.Value("whoWeAreTitle")</h4>
+                </div>
+            </div>
+            <div class="col-lg-8 offset-lg-1 col-md-8">
+                <div class="text">
+                    <p class="wow txt" data-splitting>
+                        @Model.Value("whoWeAreDesc")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Intro ==================== -->
+<!-- ==================== Start Services ==================== -->
+
+<section class="services section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="item md-mb50 wow fadeInUp" data-wow-delay=".3s">
+                        <span class="icon @Model.Value("AboutCardIcon1")"></span>
+                        <h6>@Model.Value("AboutCardName1")</h6>
+                        <p>@Model.Value("AboutCardDesc1")</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="item md-mb50 wow fadeInUp" data-wow-delay=".5s">
+                        <span class="icon @Model.Value("AboutCardIcon2")"></span>
+                        <h6>@Model.Value("AboutCardName2")</h6>
+                        <p>@Model.Value("AboutCardDesc2")</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="item wow fadeInUp" data-wow-delay=".7s">
+                        <span class="icon @Model.Value("AboutCardIcon3")"></span>
+                        <h6>@Model.Value("AboutCardName3")</h6>
+                        <p>@Model.Value("AboutCardDesc3")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Services ==================== -->
+<!-- ==================== Start block-sec ==================== -->
+
+<section class="block-sec">
+    <div class="background bg-img section-padding pb-0" data-background="img/slid/1.jpg" data-overlay-dark="8">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="vid-area">
+                        <div class="vid-icon">
+                            <a class="vid" href="https://vimeo.com/127203262">
+                                <div class="vid-butn">
+                                    <span class="icon">
+                                        <i class="fas fa-play"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="cont">
+                                <h3 class="wow" data-splitting>@Model.Value("aboutTestimonialText")</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="testim-box">
+                        <div class="head-box">
+                                <h6 class="wow fadeIn" data-wow-delay=".5s">@Model.Value("aboutTestimonialsTitle")</h6>
+                                <h4 class="wow fadeInLeft" data-wow-delay=".5s">@Model.Value("aboutTestimonialsSubTitle")</h4>
+                        </div>
+                            @Html.GetBlockListHtml(Model, "aboutTestimonials", "AboutTestimonial")
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End block-sec ==================== -->
+<!-- ==================== Start Skills Circle ==================== -->
+
+<section class="skills-circle sub-bg pt-50 pb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="">
+
+
+                    <div class="row">
+                        @* <div class="col-md-6">
+                            <div class="item wow fadeInLeft" data-wow-delay=".6">
+                                <div class="skill" data-value="0.9">
+                                    <span class="custom-font">90%</span>
+                                </div>
+                                <div class="cont">
+                                    <span>Project</span>
+                                    <h6>Consulting</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="item wow fadeInLeft" data-wow-delay=".3">
+                                <div class="skill" data-value="0.75">
+                                    <span class="custom-font">75%</span>
+                                </div>
+                                <div class="cont">
+                                    <span>App</span>
+                                    <h6>Development</h6>
+                                </div>
+                            </div>
+                        </div> *@
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Skills Circle ==================== -->
+<!-- ==================== Start Team ==================== -->
+
+<section class="team section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 valign">
+                <div class="full-width">
+                    <div class="sec-head custom-font mb-0">
+                            <h6>@Model.Value("ourTeamsSubTitle")</h6>
+                            <h3>@Model.Value("ourTeamsTitle")</h3>
+                    </div>
+                    <div class="navs mt-30 wow fadeInUp" data-wow-delay=".3s">
+                        <span class="prev cursor-pointer">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="next cursor-pointer">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+
+                    @Html.GetBlockListHtml(Model, "ourTeams", "OurTeam")
+
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Team ==================== -->
+<!-- ==================== Start Minimal-Area ==================== -->
+
+<section class="min-area sub-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="img">
+                    @{
+                    var AboutUsImage = Model.Value<MediaWithCrops>("aboutImage");
+                      }      		
+                    <img class="thumparallax-down" src="@AboutUsImage?.MediaUrl()" alt="">
+                    
+                    
+                </div>
+            </div>
+            <div class="col-lg-6 valign">
+                <div class="content">
+                    <h4 class="wow custom-font" data-splitting>@Model.Value("aboutTitle")</h4>
+                    <p class="wow txt" data-splitting>
+                        @Model.Value("aboutDesc")
+                    </p>
+                    
+                    @Html.GetBlockListHtml(Model, "aboutLists", "AboutUs")
+                    
+                 
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Minimal-Area ==================== -->
+<!-- ==================== Start clients Brands ==================== -->
+
+<section class="clients section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 valign">
+                <div class="sec-head custom-font mb-0">
+                    <h6>@Model.Value("aboutClientsTitle")</h6>
+                    <h3>@Model.Value("aboutClientsSubTitle")</h3>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div>
+                    
+                    @Html.GetBlockListHtml(Model, "aboutClients", "OurClients")
+
+                   
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End clients Brands ==================== -->
+<!-- ==================== Start call-to-action ==================== -->
+
+<section class="call-action section-padding sub-bg bg-img" data-background="~/img/pattern.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-9">
+                <div class="content sm-mb30">
+                    <h6 class="wow" data-splitting>@Model.Value("aboutLetsTalkTitle")</h6>
+                    <h2 class="wow custom-font" data-splitting>@Model.Value("aboutLetsTalkSubTitle") <b>@Model.Value("aboutLetsTalkSubTitle2")</b>.</h2>
+
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3 valign">
+                <a href="@ContactsPage.Url()" class="btn-curve btn-lit"><span>Get In Touch</span></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End call-to-action ==================== -->
+</div>

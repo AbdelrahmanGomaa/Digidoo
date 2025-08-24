@@ -1,0 +1,247 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.OurWorkDetails>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+	Layout = "MasterTemplate.cshtml";
+    var OurWorkDetailsImage = Model.Value<MediaWithCrops>("ourWorkDetailsImage");
+
+}
+
+
+<!-- ==================== Start wrapper ==================== -->
+
+<div class="wrapper">
+
+
+    <!-- ==================== Start Header ==================== -->
+
+    <section class="page-header proj-det bg-img parallaxie valign" data-background="@OurWorkDetailsImage.MediaUrl()"
+             data-overlay-dark="4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-9">
+                    <div class="cont">
+@*                         <h6>art & illustration</h6>
+ *@                        <h2>@Model.Value("ourWorkDetailsTitle")</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="item mt-30">
+                        <h6>Client</h6>
+                        <p><a href="https://@Model.Value("ourWorkClintLink") " target=" _blank">@Model.Value("ourWorkClintLink")</a></p>
+                    </div>
+                </div>
+               @*  <div class="col-lg-3">
+                    <div class="item mt-30">
+                        <h6>Date</h6>
+                        <p>6 August 2019</p>
+                    </div>
+                </div> *@
+                <div class="col-lg-3">
+                    <div class="item mt-30">
+                        <h6>Categories</h6>
+                        <p>
+
+
+                            @if (Model.HasValue("ourWorkDetailsCategory"))
+                            {
+                                var tags = Model.Value<IEnumerable<string>>("ourWorkDetailsCategory");
+
+                                @foreach (var tag in tags)
+                                {
+                                    <a href="javascript:void(0);">@tag | </a>
+                                }
+                            }
+
+                           
+                            
+                        
+                        </p>
+                    </div>
+                </div>
+                @* <div class="col-lg-3">
+                    <div class="item mt-30">
+                        <h6>Tags</h6>
+                        <p><a href="#0">Minimal</a> , <a href="#0">Modern</a> , <a href="#0">Design</a></p>
+                    </div>
+                </div> *@
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== Start Header ==================== -->
+
+    <!-- ==================== Start Intro ==================== -->
+
+    <section class="intro-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="htit">
+                        <h4><span>01 </span> @Model.Value("ourWorkInText1")</h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1 col-md-8">
+                    <div class="text js-scroll__content">
+                        <p class="extra-text">
+                            @Model.Value("ourWorkInDesc1")
+                        </p>
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Intro ==================== -->
+    <!-- ==================== Start projdtal ==================== -->
+
+    <section class="projdtal">
+        <div class="justified-gallery">
+
+
+            @{
+                var OurWorkInImages1 = Model.Value<IEnumerable<IPublishedContent>>("ourWorkInImages1");
+                foreach (var image1 in OurWorkInImages1)
+                {
+
+
+                    <a href="@image1.MediaUrl()">
+                        <img alt="@image1.Name" src="@image1.MediaUrl()" />
+                    </a>
+                }
+            }
+
+
+            
+           
+
+
+
+
+        </div>
+    </section>
+
+    <!-- ==================== End projdtal ==================== -->
+
+    
+
+
+        @if (Model.HasValue("ourWorkInText2"))
+    {
+
+
+    <!-- ==================== Start Intro ==================== -->
+
+    <section class="intro-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="htit">
+                        <h4><span>02 </span> @Model.Value("ourWorkInText2")</h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1 col-md-8">
+                    <div class="text js-scroll__content">
+                        <p class="extra-text">
+                            @Model.Value("ourWorkInDesc2")
+                        </p>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Intro ==================== -->
+    <!-- ==================== Start projdtal ==================== -->
+
+    <section class="projdtal">
+        <div class="justified-gallery">
+
+
+            @{
+                var OurWorkInImages2 = Model.Value<IEnumerable<IPublishedContent>>("ourWorkInImages2");
+                foreach (var image2 in OurWorkInImages2)
+                {
+
+
+                    <a href="@image2.MediaUrl()">
+                        <img alt="@image2.Name" src="@image2.MediaUrl()" />
+                    </a>
+                }
+            }
+
+
+           
+            
+
+
+        </div>
+    </section>
+
+    <!-- ==================== End projdtal ==================== -->
+    }
+
+
+
+
+        @if (Model.HasValue("ourWorkInText3"))
+    {
+
+    <!-- ==================== Start Intro ==================== -->
+
+    <section class="intro-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="htit">
+                        <h4><span>03 </span> @Model.Value("ourWorkInText3")</h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1 col-md-8 mb-30">
+                    <div class="text js-scroll__content">
+                        <p class="extra-text">
+                            @Model.Value("ourWorkInDesc3")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Intro ==================== -->
+    <!-- ==================== Start Video-wrapper ==================== -->
+    
+        var OurWorkVideoImg = Model.Value<MediaWithCrops>("ourWorkVideoImg");
+
+    
+    <section>
+        <div class="container-fluid">
+            <div class="video-wrapper section-padding bg-img parallaxie valign"
+                 data-background="@OurWorkVideoImg.MediaUrl()" data-overlay-dark="4">
+                <div class="full-width text-center">
+                    <a class="vid" href="https://@Model.Value("OurWorkVideolink")">
+                        <div class="vid-butn">
+                            <span class="icon">
+                                <i class="fas fa-play"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Video-wrapper ==================== -->
+   }
+
+</div>
+
+<!-- ==================== End wrapper ==================== -->

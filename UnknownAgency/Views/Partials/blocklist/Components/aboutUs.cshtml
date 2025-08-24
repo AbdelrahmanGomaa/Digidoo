@@ -1,0 +1,15 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+         var content = (ContentModels.AboutUs)Model.Content;
+
+}
+
+
+                <li class="wow fadeInUp" data-wow-delay=".2s">
+                    <h6><span>@content.Value("aboutListNum1")</span>@content.Value("aboutListTitle1")</h6>
+                    <p>@content.Value("aboutListDesc1")</p>
+                </li>

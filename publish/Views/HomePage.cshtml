@@ -1,0 +1,647 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inject Umbraco.Cms.Core.Web.IUmbracoContextAccessor umbracoContextAccessor
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Core.Models
+
+
+
+@{
+	Layout = "MasterTemplate.cshtml";
+	var ContactsPage = Umbraco.Content(1088);
+	var AboutPage = Umbraco.Content(1087);
+	
+	<!-- ==================== Start About section ==================== -->
+	
+    	
+	 var AboutImage1 = Model.Value<MediaWithCrops>("homeAboutImage1");
+	 var AboutImage2 = Model.Value<MediaWithCrops>("homeAboutImage2");
+	 var AboutImage3 = Model.Value<MediaWithCrops>("homeAboutImage3");
+
+	<!-- ==================== End About section ==================== -->
+
+	    <!-- ==================== Start services section ==================== -->
+
+    var root = Umbraco.ContentAtRoot().FirstOrDefault();
+    var servicesPage = root?.Children().FirstOrDefault(x => x.ContentType.Alias == "services");
+    var servicesBlocks = servicesPage?.Value<BlockListModel>("servicesList");
+    var topThree = servicesBlocks?.Take(3);
+    var ServicesPage = Umbraco.Content(1217);
+    
+        <!-- ==================== End services section ==================== -->
+
+    <!-- ==================== Start Clients section ==================== -->
+
+
+        var clientsPage = root?.Children().FirstOrDefault(x => x.ContentType.Alias == "about");
+        var clientsBlocks = clientsPage?.Value<BlockListModel>("aboutClients");
+
+
+    <!-- ==================== End Clients section ==================== -->
+    
+    
+     <!-- ==================== Start Blogs section ==================== -->
+
+
+
+	var selection = Umbraco.Content(Guid.Parse("25eafffd-5594-4910-8f79-5f04a7975550"))
+    .ChildrenOfType("blogDetails")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate)
+    .Take(3);
+    <!-- ==================== End Blogs section ==================== -->
+    
+    
+    
+    
+
+    }
+    
+
+
+    <!-- ==================== Start Slider ==================== -->
+
+    <header class="slider slider-prlx fixed-slider text-center">
+        <div class="swiper-container parallax-slider">
+           
+
+            @Html.GetBlockListHtml(Model, "homeSliders", "HomeSlider")
+
+
+
+
+
+            <!-- slider setting -->
+            <div class="setone setwo">
+                <div class="swiper-button-next swiper-nav-ctrl next-ctrl cursor-pointer">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="swiper-button-prev swiper-nav-ctrl prev-ctrl cursor-pointer">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+            </div>
+            <div class="swiper-pagination top botm custom-font"></div>
+
+            <div class="social-icon">
+                <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                <a href="#0"><i class="fab fa-twitter"></i></a>
+                <a href="#0"><i class="fab fa-behance"></i></a>
+                <a href="#0"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== End Slider ==================== -->
+
+
+
+    <div class="main-content">
+
+
+        <!-- ==================== Start about ==================== -->
+
+        <div class="about section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="img-mons">
+                            <div class="row">
+                                <div class="col-md-5 cmd-padding valign">
+                                    
+                                    
+                                <div class="img1 wow imago" data-wow-delay=".5s">
+                                    <img src="@AboutImage1?.MediaUrl()" alt="">
+                                </div>
+                                </div>
+                                <div class="col-md-7 cmd-padding">
+                                <div class="img2 wow imago" data-wow-delay=".3s">
+                                <img src="@AboutImage2?.MediaUrl()" alt="">
+                                </div>
+                                <div class="img3 wow imago" data-wow-delay=".8s">
+                                <img src="@AboutImage3?.MediaUrl()" alt="">
+                                </div>
+                                
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 offset-lg-1 valign">
+                        <div class="content">
+                            <div class="sub-title">
+                                <h6>@Model.Value("homeAboutTitle")</h6>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <h3 class="main-title wow" data-splitting>@Model.Value("homeAboutSubTitle")</h3>
+                            <p class="wow txt" data-splitting>
+                                @Model.Value("homeAboutDesc")
+                            </p>
+                            <div class="ftbox mt-30">
+                                <ul>
+                                    <li class="wow fadeIn" data-wow-delay=".3s">
+                                        <span class="icon pe-7s-gleam"></span>
+                                        <h6 class="custom-font">@Model.Value("homeAboutCardName1")</h6>
+                                        <div class="dots">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </li>
+                                    <li class="space wow fadeIn" data-wow-delay=".5s">
+                                        <span class="icon pe-7s-paint-bucket"></span>
+                                        <h6 class="custom-font">@Model.Value("homeAboutCardName2")</h6>
+                                        <div class="dots">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </li>
+                                    <li class="wow fadeIn" data-wow-delay=".8s">
+                                        <span class="icon pe-7s-medal"></span>
+                                        <h6 class="custom-font">@Model.Value("homeAboutCardName3")</h6>
+                                        <div class="dots">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== End about ==================== -->
+        <!-- ==================== Start Services ==================== -->
+
+        <section class="services">
+            <div class="container">
+                <div class="sec-head custom-font text-center">
+                    <h6 class="wow fadeIn" data-wow-delay=".5s">@Model.Value("homeServicesTitle")</h6>
+                    <h3 class="wow" data-splitting>@Model.Value("homeServicesSubTitle")</h3>
+                    <span class="tbg">@Model.Value("homeServicesBackground")</span>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 item-box bg-img wow fadeInLeft" data-wow-delay=".3s"
+                         data-background="img/1.jpg">
+                        <h4 class="custom-font">@Model.Value("homeServicesDesc")</h4>
+                        <a href="@ServicesPage.Url()" class="btn-curve btn-bord btn-lit mt-40"><span>See All Services</span></a>
+                    </div>
+                    @{
+                    int delayIndex = 0;
+                    var delaySteps = new[] { ".5s", ".8s", "1.1s" };
+                     }
+                    
+                    @if (topThree != null)
+                    {
+                        
+                                @foreach (var block in topThree)
+                                {
+                                    var data = block.Content;
+                                    var serviceCard = (ContentModels.ServiceCard)data;
+                                    var delay = delaySteps[delayIndex % delaySteps.Length];
+                                    delayIndex++;
+
+                                    
+                                    <div class="col-lg-3 col-md-6 item-box wow fadeInLeft" data-wow-delay="@delay">
+                                    <span class="icon pe-7s-paint-bucket"></span>
+                                    <h6>@serviceCard.Value("serviceCardName")</h6>
+                                    <p>@serviceCard.Value("serviceCardDesc")</p>
+                                    </div>
+                                }
+                        
+                    }
+
+                    
+                    
+                    
+                </div>
+            </div>
+            <div class="half-bg bottom"></div>
+        </section>
+
+        <!-- ==================== End Services ==================== -->
+        <!-- ==================== Start numbers ==================== -->
+
+        <section class="number-sec section-padding sub-bg">
+            <div class="container">
+                <div class="row">
+                   @* <div class="col-lg-3 col-md-6">
+                        <div class="item no-bord">
+                            <span class="icon pe-7s-smile"></span>
+                            <h3 class="custom-font"><span class="count">2400</span></h3>
+                            <p class="wow txt" data-splitting>Happy Clients</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="item">
+                            <span class="icon pe-7s-portfolio"></span>
+                            <h3 class="custom-font"><span class="count">133</span></h3>
+                            <p class="wow txt" data-splitting>Compleate Projects</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="item">
+                            <span class="icon pe-7s-cloud-download"></span>
+                            <h3 class="custom-font"><span class="count">254</span> k</h3>
+                            <p class="wow txt" data-splitting>Files Downloaded</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="item">
+                            <span class="icon pe-7s-medal"></span>
+                            <h3 class="custom-font"><span class="count">46</span></h3>
+                            <p class="wow txt" data-splitting>Award Win</p>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== End numbers ==================== -->
+        <!-- ==================== Start works ==================== -->
+
+        <section class="work-carousel section-padding pt-0 metro position-re">
+            <div class="container ontop">
+                <div class="row">
+                    <div class="col-lg-12 no-padding">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="content wow noraidus fadeInUp" data-wow-delay=".3s">
+                                        <div class="item-img bg-img wow imago"
+                                             data-background="img/portfolio/metro/01.jpg">
+                                        </div>
+                                        <div class="cont">
+                                            <h6><a href="#0">art & illustration</a></h6>
+                                            <h4><a href="project-details.html">Innovation and Crafts.</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content wow noraidus fadeInUp" data-wow-delay=".3s">
+                                        <div class="item-img bg-img wow imago"
+                                             data-background="img/portfolio/metro/02.jpg">
+                                        </div>
+                                        <div class="cont">
+                                            <h6><a href="#0">art & illustration</a></h6>
+                                            <h4><a href="project-details.html">Inspiring new space.</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content wow noraidus fadeInUp" data-wow-delay=".3s">
+                                        <div class="item-img bg-img wow imago"
+                                             data-background="img/portfolio/metro/03.jpg">
+                                        </div>
+                                        <div class="cont">
+                                            <h6><a href="#0">art & illustration</a></h6>
+                                            <h4><a href="project-details.html">Natural plus modern.</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content wow noraidus fadeInUp" data-wow-delay=".3s">
+                                        <div class="item-img bg-img wow imago"
+                                             data-background="img/portfolio/metro/04.jpg">
+                                        </div>
+                                        <div class="cont">
+                                            <h6><a href="#0">art & illustration</a></h6>
+                                            <h4><a href="project-details.html">Innovation and Crafts.</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content wow noraidus fadeInUp" data-wow-delay=".3s">
+                                        <div class="item-img bg-img wow imago"
+                                             data-background="img/portfolio/metro/05.jpg">
+                                        </div>
+                                        <div class="cont">
+                                            <h6><a href="#0">art & illustration</a></h6>
+                                            <h4><a href="project-details.html">Inspiring new space.</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- slider setting -->
+                            <div class="swiper-button-next swiper-nav-ctrl simp-next cursor-pointer">
+                                <span class="simple-btn right">Next</span>
+                            </div>
+                            <div class="swiper-button-prev swiper-nav-ctrl simp-prev cursor-pointer">
+                                <span class="simple-btn">Prev</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="half-bg top"></div>
+        </section>
+
+        <!-- ==================== End works ==================== -->
+     
+        
+        <!-- ==================== Start testimonials ==================== -->
+
+    <section class="testimonials section-padding">
+        <div class="container position-re">
+            <div class="sec-head custom-font text-center">
+                <h6 class="wow fadeIn" data-wow-delay=".5s">What Peapole Says?</h6>
+                <h3 class="wow" data-splitting>Testimonials.</h3>
+                <span class="tbg">Testimonials</span>
+            </div>
+            <div class="row justify-content-center wow fadeInUp" data-wow-delay=".5s">
+                <div class="col-lg-8">
+                    <div class="slic-item">
+                        <div class="item">
+                            <p>Working with Avo digital agency to support our organic and paid social media activity has
+                                extended the marketing activities we are able to achieve platform has made collaboration
+                                easy.</p>
+                            <div class="info">
+                                <div class="cont">
+                                    <div class="author">
+                                        <div class="img">
+                                            <img src="img/clients/1.jpg" alt="">
+                                        </div>
+                                        <h6 class="author-name custom-font">Alex Regelman</h6>
+                                        <span class="author-details">Co-founder, Colabrio</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p>Avo started out managing our SEO efforts, but their scientific approach to digital
+                                marketing and the results they have achieved made it an easy decision for us to handover
+                                the management.</p>
+                            <div class="info">
+                                <div class="cont">
+                                    <div class="author">
+                                        <div class="img">
+                                            <img src="img/clients/1.jpg" alt="">
+                                        </div>
+                                        <h6 class="author-name custom-font">Alex Regelman</h6>
+                                        <span class="author-details">Co-founder, Colabrio</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p>I would highly recommend Avo Digital. I worked with the team on an animation for our
+                                ‘Click & Collect’ service. This team is different from any other agency I have worked
+                                with in the past.</p>
+                            <div class="info">
+                                <div class="cont">
+                                    <div class="author">
+                                        <div class="img">
+                                            <img src="img/clients/1.jpg" alt="">
+                                        </div>
+                                        <h6 class="author-name custom-font">Alex Regelman</h6>
+                                        <span class="author-details">Co-founder, Colabrio</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrows">
+                <div class="next cursor-pointer">
+                    <span class="pe-7s-angle-right"></span>
+                </div>
+                <div class="prev cursor-pointer">
+                    <span class="pe-7s-angle-left"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End testimonials ==================== -->
+
+        <!-- ==================== Start clients Brands ==================== -->
+
+        <section class="clients section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 valign">
+                        <div class="sec-head custom-font mb-0">
+                            <h6>@Model.Value("homrClientsTitle")</h6>
+                            <h3>@Model.Value("homrClientsSubTitle") <br> @Model.Value("homrClientsSubTitle2").</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div>
+                            
+
+                
+                            
+                            <div class="row bord">
+                                @{
+                                int delayIndexx = 0;
+                                var delayStepss = new[] { ".5s", ".8s", "1.1s" };
+                                
+                                 }
+                    
+                                
+                                
+                                
+                                @if (clientsBlocks != null)
+                                {
+                        
+                                @foreach (var block in clientsBlocks)
+                                {
+                                    var dataClients = block.Content;
+                                    var contentClients = (ContentModels.OurClients)dataClients;
+                                    var ContactsImg = contentClients.Value<MediaWithCrops>("ourClientsImage");
+                                    var delay = delaySteps[delayIndexx % delayStepss.Length];
+                                    delayIndexx++;
+                                    
+                                    <div class="col-md-3 col-6 brands">
+                                    <div class="item wow fadeIn" data-wow-delay="@delay">
+                                        <div class="img">
+                                            <img src="@ContactsImg?.MediaUrl()" alt="">
+                                            <a href="https://@contentClients.Value("ourClientsLink")" target="_blank" class="link" data-splitting>@contentClients.Value("ourClientsLink")</a>
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                }
+                        
+                             }
+
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== End clients Brands ==================== -->
+        
+        
+        
+   
+    
+
+        
+        <!-- ==================== Start Blog ==================== -->
+
+        <section class="blog-grid section-padding sub-bg">
+        <div class="container">
+            <div class="sec-head custom-font text-center">
+                <h6 class="wow fadeIn" data-wow-delay=".5s">@Model.Value("homeBlogTitle")</h6>
+                <h3 class="wow" data-splitting>@Model.Value("homeBlogSubTitle")</h3>
+                <span class="tbg">@Model.Value("homeBlogBackground")</span>
+            </div>
+            <div class="row">
+                
+                
+                    @{
+                    int delayIndexxx = 0;
+                    var delayStepsss = new[] { ".5s", ".8s", "1.1s" };
+                    
+                     }
+                
+                
+                
+                    
+                	@foreach (var item in selection)
+                	{
+                		
+                		 var BlogImage = item.Value<MediaWithCrops>("blogImg");
+                        var blogDate = item.Value<DateTime>("blogDate");
+                		var delay = delaySteps[delayIndexxx % delayStepsss.Length];
+                        delayIndexxx++;
+                        
+                        
+                         <div class="col-lg-4 wow fadeInUp" data-wow-delay="@delay">
+                         <div class="item active bg-img"  data-background="@BlogImage?.MediaUrl()">
+                             <div class="cont">
+                                 <a class="date custom-font">
+                                     <span><i>@blogDate.ToString("dd")</i>@blogDate.ToString("MMMM-yyyy")</span>
+                                 </a>
+                               
+                                 <div class="info custom-font">
+                                     <a class="author">
+                                         <span>by / Admin</span>
+                                     </a>
+                                     <a class="tag">
+                                         
+                                     @if (item.HasValue("blogTags"))
+                                     {
+                                    
+                                    
+                                     var tags = item.Value<IEnumerable<string>>("blogTags");
+                                   
+                                    
+                                     @foreach (var tag in tags)
+                                     {    
+                                    <span>@tag</span>
+                                
+                                    }
+                                    }
+                                     </a>
+                                 </div>
+                                 <h6>
+                                    <a href="@item.Url()">
+                                    @item.Name()
+                                    </a>
+                                 </h6>
+                                 <div class="btn-more custom-font">
+                                     <a href="@item.Url()" class="simple-btn">Read More</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                        
+                        
+                		@*<div class="col-lg-4">
+                    <div class="item list md-mb50 wow fadeInUp" data-wow-delay="@delay">
+                        <div class="img">
+                            <img src="@BlogImage?.MediaUrl()" alt="">
+                        </div>
+                        <div class="cont">
+                            <a href="#0" class="date custom-font">
+                                <span><i>@blogDate.ToString("dd")</i><i>@blogDate.ToString("MMM")</i>@blogDate.ToString("yyyy")</span>
+                            </a>
+                            <div class="info custom-font">
+                                <a href="#0" class="author">
+                                    <span>by / Admin</span>
+                                </a>
+                                <a href="#0" class="tag">
+                                    
+                                     @if (item.HasValue("blogTags"))
+                                     {
+                                    
+                                    
+                                     var tags = item.Value<IEnumerable<string>>("blogTags");
+                                   
+                                    
+                                     @foreach (var tag in tags)
+                                     {    
+                                    <span>@tag</span>
+                                
+                                    }
+                                    }
+                                
+                                </a>
+                            </div>
+                            <h6>
+                                <a href="@item.Url()">
+                                    @item.Name()
+                                </a>
+                            </h6>
+                            <div class="btn-more custom-font">
+                                <a href="@item.Url()" class="simple-btn">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                		
+                		
+                	}
+                    
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </section>
+        <!-- ==================== End Blog ==================== -->
+        <!-- ==================== Start call-to-action ==================== -->
+
+      <section class="call-action section-padding sub-bg bg-img" data-background="img/pattern.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-9">
+                <div class="content sm-mb30">
+                    <h6 class="wow" data-splitting>@AboutPage.Value("aboutLetsTalkTitle")</h6>
+                    <h2 class="wow custom-font" data-splitting>@AboutPage.Value("aboutLetsTalkSubTitle") <b>@AboutPage.Value("aboutLetsTalkSubTitle2")</b>.</h2>
+
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3 valign">
+                <a href="@ContactsPage.Url()" class="btn-curve btn-lit"><span>Get In Touch</span></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+        <!-- ==================== End call-to-action ==================== -->
+      
+    </div>
+
+
+
+
+

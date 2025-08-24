@@ -1,0 +1,213 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Blogs>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    Layout = "MasterTemplate.cshtml";
+
+
+
+    <!-- ================================
+    FOR SEO -- WE TOLD GOOGLE JUST CARE ABOUT PAGE NUMBER 1 ONLY
+    ================================= -->
+    // Get the current page number from the query string
+    var currentPage = HttpContextAccessor.HttpContext.Request.Query["page"];
+
+    // Set the canonical URL to be the base URL of the blog
+    var canonicalUrl = currentPage == "1" || string.IsNullOrEmpty(currentPage)
+        ? "/blogs"
+        : $"/blogs?page={currentPage}";
+
+    // Pass the canonical URL to the layout
+    ViewData["Canonical"] = canonicalUrl;
+
+
+
+    var selection = Umbraco.Content(Guid.Parse("25eafffd-5594-4910-8f79-5f04a7975550"))
+    .ChildrenOfType("blogDetails")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+
+
+
+
+    int pageSize = 3;
+    int page;
+
+    if (!int.TryParse(HttpContextAccessor.HttpContext.Request.Query["page"], out page))
+    {
+        page = 1;
+    }
+
+    int totalNodes = selection.Count();
+    int totalPages = (int)Math.Ceiling((double)totalNodes / (double)pageSize);
+
+    if (page > totalPages)
+    {
+        page = totalPages;
+    }
+    else if (page < 1)
+    {
+        page = 1;
+    }
+
+
+
+    // جلب المدونات الخاصة بالصفحة الحالية
+    var paginatedItems = selection.Skip((page - 1) * pageSize).Take(pageSize);
+}
+
+ <!-- ==================== Start wrapper ==================== -->
+
+ <div class="wrapper">
+
+
+     <!-- ==================== Start Header ==================== -->
+
+     <section class="page-header">
+         <div class="container">
+             <div class="row">
+                 <div class="col-lg-7 col-md-9">
+                     <div class="cont">
+                         <h1 class="extra-title mb-10">Our Blog.</h1>
+                         <p>All the most current news and events of our creative team.</p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+     <!-- ==================== Start Header ==================== -->
+
+
+
+     <!-- ==================== Start Blog ==================== -->
+
+     <section class="blog-pg section-padding pt-0">
+         <div class="container">
+             <div class="row justify-content-center">
+                 <div class="col-lg-11">
+                     <div class="posts">
+
+
+
+
+
+
+                        @foreach (var item in paginatedItems)
+                            	{
+                            	
+                            		var BlogImage = item.Value<MediaWithCrops>("blogImg");
+                            	    var blogDate = item.Value<DateTime>("blogDate");
+                            		
+                            		
+                            		
+                            		
+                            		<div class="item mb-80">
+                                     <div class="img">
+                                         <a href="@item.Url()">
+                                            <img src="@BlogImage?.MediaUrl()" alt="">
+                                         </a>
+                                     </div>
+                                     <div class="content">
+                                         <div class="row">
+                                             <div class="col-10">
+                                                 <a href="#0" class="date">
+                                                     <span class="num">@blogDate.ToString("dd-MMM-yyyy")</span>
+                                                     
+                                                 </a>
+                                                 <div class="tags">
+                                                     
+                                                     
+                                                      @if (item.HasValue("blogTags"))
+                                                     {
+                                                         var tags = item.Value<IEnumerable<string>>("blogTags");
+                                                         var index = 0;
+
+                                                       @foreach (var tag in tags)
+                                                      {
+                                                         <a href="#0">@tag</a>
+                                                      }
+                                                    } 
+                                                 </div>
+                                                 <h4 class="title"><a href="@item.Url()">@item.Value("blogTitle")</a></h4>
+                                                 <p> @item.Value("blogSubDesc")
+                                                 </p>
+                                                 <a href="@item.Url()" class="simple-btn mt-30">Read More</a>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                            		
+                            		
+                            		
+                            		
+                            		
+                            		
+                            		
+                            		
+                            		
+                            		
+                            		
+                            	}
+
+
+
+
+
+
+
+
+
+                       
+
+                        <div class="pagination">
+                            <!-- صفحة سابقة -->
+                            @if (page > 1)
+                            {
+                                <span>
+                                    <a href="@(page - 1 == 1 ? "/blogs" : $"/blogs?page={page - 1}")">
+                                        <i class="fas fa-angle-left"></i>
+                                    </a>
+                                </span>
+                            }
+
+                            <!-- الأرقام -->
+                            @for (int i = 1; i <= totalPages; i++)
+                            {
+                                <span class="@(i == page ? "active" : "")">
+                                    <a href="@(i == 1 ? "/blogs" : $"/blogs?page={i}")">@i</a>
+                                </span>
+                            }
+
+                            <!-- صفحة تالية -->
+                            @if (page < totalPages)
+                            {
+                                <span>
+                                    <a href="@(page + 1 == 1 ? "/blogs" : $"/blogs?page={page + 1}")">
+                                        <i class="fas fa-angle-right"></i>
+                                    </a>
+                                </span>
+                            }
+                        </div>
+
+                         
+                         
+                         
+                         
+                         
+                         
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+     <!-- ==================== End Blog ==================== -->
+
+
+ </div>
+
+ <!-- ==================== End wrapper ==================== -->
+

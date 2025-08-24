@@ -1,0 +1,92 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Services>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "MasterTemplate.cshtml";
+}
+
+<!-- ==================== Start header ==================== -->
+
+<header class="works-header fixed-slider hfixd valign">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-11 static">
+                <div class="capt mt-50">
+                    <div class="parlx">
+                        <h2 class="custom-font"><span>Let's</span>Talk About Your project.</h2>
+                        <p>
+                            Feel free to ask me any question or let’s do to talk about
+                            our future collaboration.
+                        </p>
+                    </div>
+
+                    <div class="bactxt custom-font valign">
+                        <span class="full-width">SERVICES</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== End header ==================== -->
+
+
+
+<div class="main-content">
+
+<!-- ==================== Start blc-sec ==================== -->
+
+<section class="blc-sec section-padding pb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="intro md-mb30">
+                    <div class="sub-title">
+                        <h6>Know Us Better</h6>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h2 class="extra-title wow" data-splitting>
+                        We help to create strategies, design &
+                        development.
+                    </h2>
+                </div>
+            </div>
+            <div class="col-lg-5 valign">
+                <div class="full-width">
+                    <p class="wow txt" data-splitting>
+                        We never underestimate any parts of each project
+                        as
+                        they're
+                        all essential to meeting the
+                        ultimate goal. you'll be engaged in with our positive and enthusiastic attitude.
+                    </p>
+                    <a href="#0" class="simple-btn custom-font mt-20 wow" data-splitting><span>Know More</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End blc-sec ==================== -->
+<!-- ==================== Start Services ==================== -->
+
+<section class="services section-padding">
+    <div class="container">
+
+
+
+
+            @Html.GetBlockListHtml(Model, "servicesList", "ServiceCard")
+
+
+
+
+
+    </div>
+</section>
+
+<!-- ==================== End Services ==================== -->
+</div>

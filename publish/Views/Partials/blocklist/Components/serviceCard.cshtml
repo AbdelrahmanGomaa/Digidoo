@@ -1,0 +1,26 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+var contentClients = (ContentModels.ServiceCard)Model.Content;
+
+}
+                        <div class="col-lg-3 offset-lg-1 wow fadeInUp" data-wow-delay=".4s">
+                            <div class="mas-item">
+                                <span class="icon pe-7s-phone"></span>
+                                <h6>@contentClients.Value("serviceCardName")</h6>
+                                <p>@contentClients.Value("serviceCardDesc")</p>
+                                <div class="text-right">
+                                    <a href="#0" class="more"><i class="fas fa-chevron-right"></i></a>
+                                </div>
+                                <div class="bg-color"></div>
+                            </div>
+                        </div>
+                        
+                        
+                
+                      
+                   
+

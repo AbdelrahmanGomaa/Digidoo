@@ -1,0 +1,226 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogDetails>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+	Layout = "MasterTemplate.cshtml";
+    var BlogImage = Model.Value<MediaWithCrops>("blogImg");
+
+}
+
+
+<!-- ==================== Start wrapper ==================== -->
+
+<div class="wrapper">
+
+
+    <!-- ==================== Start Header ==================== -->
+
+    <section class="page-header blg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-9">
+                    <div class="cont text-center">
+                        <h1>@Model.Value("blogTitle")</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== Start Header ==================== -->
+    <!-- ==================== Start Blog ==================== -->
+
+    <section class="blog-pg single section-padding pt-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-11">
+                    <div class="post">
+                        <div class="img">
+                            <img src="@BlogImage.MediaUrl()" alt="">
+                        </div>
+                        <div class="content pt-20">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <div class="cont">
+                                        <div class="spacial">
+                                            <p>
+                                                Never ever think of giving up. Winners never quit and quitters never
+                                                win. Take all negative words out of your mental dictionary and focus
+                                                on the solutions with utmost conviction and patience. The battle is
+                                                never lost until you’ve abandon your vision.
+                                            </p>
+                                        </div>
+                                        <p>
+                                            @Model.Value("blogDesc")
+                                        </p>
+
+                                        
+
+                                        <div class="quotes text-center">
+                                            <p>
+                                                @Model.Value("blogQuote")
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            @{
+                                                var listOfImages = Model.Value<IEnumerable<IPublishedContent>>("blogMedia");
+                                                foreach (var image in listOfImages)
+                                                {
+                                                    <div class="col-md-6">
+                                                        <div class="mb-10">
+                                                            <img src="@image.Url()" alt="@image.Name">
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+
+                                           
+                                        </div>
+                                        <p>
+                                            @Model.Value("blogLastDesc")
+                                        </p>
+                                        <div class="share-info">
+                                            <div class="social">
+                                                <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
+                                                <a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
+                                                <a href="javascript:void(0);"><i class="fab fa-behance"></i></a>
+                                            </div>
+                                            <div class="tags">
+
+                                                @if (Model.HasValue("blogTags"))
+                                                {
+                                                    var tags = Model.Value<IEnumerable<string>>("blogTags");
+                                                        @foreach (var tag in tags)
+                                                        {
+
+                                                        <a href="javascript:void(0);">@tag |</a>
+
+                                                        }
+                                                }
+                                                
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @* <div class="author">
+                                        <div class="author-img">
+                                            <img src="img/blog/01.jpg" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <h6><span>author :</span> Jorden Griffin</h6>
+                                            <p>
+                                                the main component of a healthy environment for self esteem is that
+                                                it needs be nurturing. The main compont of a healthy environment.
+                                            </p>
+                                            <div class="social">
+                                                <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                                                <a href="#0"><i class="fab fa-twitter"></i></a>
+                                                <a href="#0"><i class="fab fa-behance"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+ *@
+
+                                </div>
+                            </div>
+                        </div>
+
+                      @*   <div class="pagination">
+                            <span><a href="#0">Prev Post</a></span>
+                            <span class="icon"><a href="blog.html"><i class="fas fa-th-large"></i></a></span>
+                            <span class="text-right"><a href="#0">Next Post</a></span>
+                        </div> *@
+
+                        @* <div class="comments-area">
+                            <h5>Comments :</h5>
+                            <div class="item">
+                                <div class="comment-img">
+                                    <img src="img/blog/01.jpg" alt="">
+                                </div>
+                                <div class="info">
+                                    <h6>Jorden Griffin - <span> 6 Aug 2019</span></h6>
+                                    <span class="replay"><a href="#0">Replay <i class="fas fa-reply"></i></a></span>
+                                    <p>
+                                        the main component of a healthy environment for self esteem is that it needs
+                                        be nurturing. The main compont of a healthy environment.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="item relped">
+                                <div class="comment-img">
+                                    <img src="img/blog/01.jpg" alt="">
+                                </div>
+                                <div class="info">
+                                    <h6>Jorden Griffin - <span> 6 Aug 2019</span></h6>
+                                    <span class="replay"><a href="#0">Replay <i class="fas fa-reply"></i></a></span>
+                                    <p>
+                                        the main component of a healthy environment for self esteem is that it needs
+                                        be nurturing. The main compont of a healthy environment.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="comment-img">
+                                    <img src="img/blog/01.jpg" alt="">
+                                </div>
+                                <div class="info">
+                                    <h6>Jorden Griffin - <span> 6 Aug 2019</span></h6>
+                                    <span class="replay"><a href="#0">Replay <i class="fas fa-reply"></i></a></span>
+                                    <p>
+                                        the main component of a healthy environment for self esteem is that it needs
+                                        be nurturing. The main compont of a healthy environment.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comment-form">
+                            <h5>Add Comment :</h5>
+                            <div class="form">
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <textarea placeholder="Your Comment"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" placeholder="Your Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="email" placeholder="Your Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <button class="btn-curve btn-color btn-lg">
+                                                    <span>Submit</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> *@
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+
+</div>
+
+<!-- ==================== End wrapper ==================== -->

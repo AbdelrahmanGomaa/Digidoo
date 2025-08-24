@@ -1,0 +1,83 @@
+﻿
+@using UnknownAgency.Models;
+@using Microsoft.AspNetCore.Mvc.ModelBinding;
+@using Umbraco.Cms.Web.Common;
+@using Umbraco.Extensions
+@using UnknownAgency
+@using Umbraco.Cms.Web.Common.PublishedModels
+@using Umbraco.Cms.Web.Common.Views
+@using Umbraco.Cms.Core.Models.PublishedContent
+
+@using UnknownAgency.Controllers
+@using Umbraco.Cms.Core.Models
+@model UnknownAgency.Models.ContactFormViewModel
+@inject UmbracoHelper umbracoHelper
+
+@{
+    var successMessage = ViewBag.SuccessMessage as string;
+    var modelState = TempData["ModelState"] as ModelStateDictionary;
+    var contactFormModel = TempData["ContactFormModel"] as ContactFormViewModel;
+}
+
+     @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            Please fix the errors below.
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    else
+    {
+
+
+    @using (Html.BeginUmbracoForm<ContactFormController>(nameof(ContactFormController.SubmitAsync), null, new { @class = "was-validated" }))
+    {
+        <div class="messages"></div>
+            @if (modelState != null && contactFormModel != null)
+            {
+                <div class="alert alert-success contact-success-message"
+                     role="alert">
+                    Thank You! Your message has been sent.
+                </div>
+            }
+        <div class="controls">
+
+            <div class="form-group">
+                    <input asp-for="Name" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                    <input asp-for="Email" placeholder="Email" pattern="[A-Za-z0-9._%+-]+[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                    <input asp-for="PhoneNumber" placeholder="Phone Number" pattern="^\+?[0-9][0-9]{9,14}$">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                    <input asp-for="Subject" placeholder="Subject" pattern="[A-Za-z]+">
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <textarea asp-for="Message" placeholder="Message" rows="4"
+                          required="required"></textarea>
+            </div>
+
+            <button type="submit" class="btn-curve btn-lit"><span>Send Message</span></button>
+        </div>
+        }
+
+        }

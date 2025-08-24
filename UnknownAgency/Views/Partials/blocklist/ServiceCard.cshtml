@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListModel>
+
+@{
+    if (Model?.Any() != true) { return; }
+
+    var blocks = Model.ToList();
+    var rowClassNames = new[] { "rone", "rtwo", "rthree" }; // تقدر تزودهم لو محتاج صفوف أكتر
+    var rowIndex = 0;
+}
+
+<div class="container">
+    @for (int i = 0; i < blocks.Count; i += 3)
+    {
+        var rowBlocks = blocks.Skip(i).Take(3);
+        var rowClass = rowIndex < rowClassNames.Length ? rowClassNames[rowIndex] : "row";
+        rowIndex++;
+
+        <div class="row @rowClass">
+            @foreach (var block in rowBlocks)
+            {
+                if (block?.ContentUdi == null) { continue; }
+                var data = block.Content;
+                @await Html.PartialAsync("blocklist/Components/" + data.ContentType.Alias, block)
+            }
+        </div>
+    }
+</div>

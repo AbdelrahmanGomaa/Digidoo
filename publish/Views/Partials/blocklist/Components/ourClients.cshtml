@@ -1,0 +1,23 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+         var contentClients = (ContentModels.OurClients)Model.Content;
+
+         var ContactsImg = contentClients.Value<MediaWithCrops>("ourClientsImage");
+    
+}
+
+
+                        <div class="col-md-3 col-6 brands">
+                            <div class="item wow fadeIn" data-wow-delay=".3s">
+                                <div class="img">
+                                    <img src="@ContactsImg?.MediaUrl()" alt="">
+                                     <a href="https://@contentClients.Value("ourClientsLink")" target="_blank" class="link" data-splitting>@contentClients.Value("ourClientsLink")</a>
+                                </div>
+                            </div>
+                        </div>
+
+         

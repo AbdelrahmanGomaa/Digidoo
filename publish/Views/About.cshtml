@@ -1,0 +1,423 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.About>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+	Layout = "MasterTemplate.cshtml";
+    var ContactsPage = Umbraco.Content(1088);
+
+}
+
+
+
+
+<!-- ==================== Start Slider ==================== -->
+
+<header class="pages-header bg-img valign parallaxie" data-background="img/slid/1.jpg" data-overlay-dark="5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cont text-center">
+                    <h1>About Us</h1>
+                    <div class="path">
+                        <a href="#0">Home</a><span>/</span><a href="#0" class="active">About Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== End Slider ==================== -->
+<!-- ==================== Start Intro ==================== -->
+
+<section class="intro-section section-padding pb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="htit sm-mb30">
+                    <h4>@Model.Value("whoWeAreTitle")</h4>
+                </div>
+            </div>
+            <div class="col-lg-8 offset-lg-1 col-md-8">
+                <div class="text">
+                    <p class="wow txt" data-splitting>
+                        @Model.Value("whoWeAreDesc")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Intro ==================== -->
+<!-- ==================== Start Services ==================== -->
+
+<section class="services section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="item md-mb50 wow fadeInUp" data-wow-delay=".3s">
+                    <span class="icon pe-7s-gleam"></span>
+                    <h6>Digital Marketing</h6>
+                    <p>Tempore corrupti temporibus fuga earum asperiores fugit laudantium.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="item md-mb50 wow fadeInUp" data-wow-delay=".5s">
+                    <span class="icon pe-7s-phone"></span>
+                    <h6>Web & App Development</h6>
+                    <p>Tempore corrupti temporibus fuga earum asperiores fugit laudantium.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="item wow fadeInUp" data-wow-delay=".7s">
+                    <span class="icon pe-7s-magic-wand"></span>
+                    <h6>Graphic Design</h6>
+                    <p>Tempore corrupti temporibus fuga earum asperiores fugit laudantium.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Services ==================== -->
+<!-- ==================== Start block-sec ==================== -->
+
+<section class="block-sec">
+    <div class="background bg-img section-padding pb-0" data-background="img/slid/1.jpg" data-overlay-dark="8">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="vid-area">
+                        <div class="vid-icon">
+                            <a class="vid" href="https://vimeo.com/127203262">
+                                <div class="vid-butn">
+                                    <span class="icon">
+                                        <i class="fas fa-play"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="cont">
+                            <h3 class="wow" data-splitting>So that's us. There's no other way to put it.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="testim-box">
+                        <div class="head-box">
+                            <h6 class="wow fadeIn" data-wow-delay=".5s">Our Happy Clients</h6>
+                            <h4 class="wow fadeInLeft" data-wow-delay=".5s">What Client's Say?</h4>
+                        </div>
+                        <div class="slic-item wow fadeInUp" data-wow-delay=".5s">
+                            <div class="item">
+                                <p>
+                                    Nulla metus metus ullamcorper vel tincidunt sed euismod nibh volutpat velit
+                                    class
+                                    aptent taciti sociosqu ad litora.
+                                </p>
+                                <div class="info">
+                                    <div class="img">
+                                        <div class="img-box">
+                                            <img src="img/clients/1.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="cont">
+                                        <div class="author">
+                                            <h6 class="author-name custom-font">Alex Regelman</h6>
+                                            <span class="author-details">Co-founder, Colabrio</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <p>
+                                    Nulla metus metus ullamcorper vel tincidunt sed euismod nibh volutpat velit
+                                    class
+                                    aptent taciti sociosqu ad litora.
+                                </p>
+                                <div class="info">
+                                    <div class="img">
+                                        <div class="img-box">
+                                            <img src="img/clients/2.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="cont">
+                                        <div class="author">
+                                            <h6 class="author-name custom-font">Alex Regelman</h6>
+                                            <span class="author-details">Co-founder, Colabrio</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <p>
+                                    Nulla metus metus ullamcorper vel tincidunt sed euismod nibh volutpat velit
+                                    class
+                                    aptent taciti sociosqu ad litora.
+                                </p>
+                                <div class="info">
+                                    <div class="img">
+                                        <div class="img-box">
+                                            <img src="img/clients/3.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="cont">
+                                        <div class="author">
+                                            <h6 class="author-name custom-font">Alex Regelman</h6>
+                                            <span class="author-details">Co-founder, Colabrio</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End block-sec ==================== -->
+<!-- ==================== Start Skills Circle ==================== -->
+
+<section class="skills-circle sub-bg pt-50 pb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="item wow fadeInLeft" data-wow-delay=".6">
+                                <div class="skill" data-value="0.9">
+                                    <span class="custom-font">90%</span>
+                                </div>
+                                <div class="cont">
+                                    <span>Project</span>
+                                    <h6>Consulting</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="item wow fadeInLeft" data-wow-delay=".3">
+                                <div class="skill" data-value="0.75">
+                                    <span class="custom-font">75%</span>
+                                </div>
+                                <div class="cont">
+                                    <span>App</span>
+                                    <h6>Development</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Skills Circle ==================== -->
+<!-- ==================== Start Team ==================== -->
+
+<section class="team section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 valign">
+                <div class="full-width">
+                    <div class="sec-head custom-font mb-0">
+                        <h6>Employees</h6>
+                        <h3>Our Team.</h3>
+                    </div>
+                    <div class="navs mt-30 wow fadeInUp" data-wow-delay=".3s">
+                        <span class="prev cursor-pointer">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="next cursor-pointer">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="team-container">
+                    <div class="item wow fadeInUp" data-wow-delay=".3s">
+                        <div class="img wow imago">
+                            <img src="img/team/01.jpg" alt="">
+                        </div>
+                        <div class="info">
+                            <h5>Hasib sharif</h5>
+                            <span>General Manager</span>
+                            <div class="social">
+                                <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#0"><i class="fab fa-twitter"></i></a>
+                                <a href="#0"><i class="fab fa-behance"></i></a>
+                                <a href="#0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item wow fadeInUp" data-wow-delay=".3s">
+                        <div class="img wow imago">
+                            <img src="img/team/02.jpg" alt="">
+                        </div>
+                        <div class="info">
+                            <h5>Jonson Leo</h5>
+                            <span>Founder</span>
+                            <div class="social">
+                                <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#0"><i class="fab fa-twitter"></i></a>
+                                <a href="#0"><i class="fab fa-behance"></i></a>
+                                <a href="#0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item wow fadeInUp" data-wow-delay=".3s">
+                        <div class="img wow imago">
+                            <img src="img/team/03.jpg" alt="">
+                        </div>
+                        <div class="info">
+                            <h5>Leio Man</h5>
+                            <span>Founder</span>
+                            <div class="social">
+                                <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#0"><i class="fab fa-twitter"></i></a>
+                                <a href="#0"><i class="fab fa-behance"></i></a>
+                                <a href="#0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item wow fadeInUp" data-wow-delay=".3s">
+                        <div class="img wow imago">
+                            <img src="img/team/4.jpg" alt="">
+                        </div>
+                        <div class="info">
+                            <h5>Robert Front</h5>
+                            <span>CEO Founder</span>
+                            <div class="social">
+                                <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#0"><i class="fab fa-twitter"></i></a>
+                                <a href="#0"><i class="fab fa-behance"></i></a>
+                                <a href="#0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item wow fadeInUp" data-wow-delay=".3s">
+                        <div class="img wow imago">
+                            <img src="img/team/5.jpg" alt="">
+                        </div>
+                        <div class="info">
+                            <h5>Legender Mao</h5>
+                            <span>3D Visualization</span>
+                            <div class="social">
+                                <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#0"><i class="fab fa-twitter"></i></a>
+                                <a href="#0"><i class="fab fa-behance"></i></a>
+                                <a href="#0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item wow fadeInUp" data-wow-delay=".3s">
+                        <div class="img wow imago">
+                            <img src="img/team/6.jpg" alt="">
+                        </div>
+                        <div class="info">
+                            <h5>Matt Huk</h5>
+                            <span>3D Visualization</span>
+                            <div class="social">
+                                <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#0"><i class="fab fa-twitter"></i></a>
+                                <a href="#0"><i class="fab fa-behance"></i></a>
+                                <a href="#0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Team ==================== -->
+<!-- ==================== Start Minimal-Area ==================== -->
+
+<section class="min-area sub-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="img">
+                    @{
+                    var AboutUsImage = Model.Value<MediaWithCrops>("aboutImage");
+                      }      		
+                    <img class="thumparallax-down" src="@AboutUsImage?.MediaUrl()" alt="">
+                    
+                    
+                </div>
+            </div>
+            <div class="col-lg-6 valign">
+                <div class="content">
+                    <h4 class="wow custom-font" data-splitting>@Model.Value("aboutTitle")</h4>
+                    <p class="wow txt" data-splitting>
+                        @Model.Value("aboutDesc")
+                    </p>
+                    
+                    @Html.GetBlockListHtml(Model, "aboutLists", "AboutUs")
+                    
+                 
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End Minimal-Area ==================== -->
+<!-- ==================== Start clients Brands ==================== -->
+
+<section class="clients section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 valign">
+                <div class="sec-head custom-font mb-0">
+                    <h6>@Model.Value("aboutClientsTitle")</h6>
+                    <h3>@Model.Value("aboutClientsSubTitle")</h3>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div>
+                    
+                    @Html.GetBlockListHtml(Model, "aboutClients", "OurClients")
+
+                   
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End clients Brands ==================== -->
+<!-- ==================== Start call-to-action ==================== -->
+
+<section class="call-action section-padding sub-bg bg-img" data-background="img/pattern.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-9">
+                <div class="content sm-mb30">
+                    <h6 class="wow" data-splitting>@Model.Value("aboutLetsTalkTitle")</h6>
+                    <h2 class="wow custom-font" data-splitting>@Model.Value("aboutLetsTalkSubTitle") <b>@Model.Value("aboutLetsTalkSubTitle2")</b>.</h2>
+
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3 valign">
+                <a href="@ContactsPage.Url()" class="btn-curve btn-lit"><span>Get In Touch</span></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ==================== End call-to-action ==================== -->
